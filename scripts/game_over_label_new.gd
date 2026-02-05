@@ -14,7 +14,7 @@ func _ready() -> void:
 func animation():
 	# Crée l'animation
 	var tween = create_tween()
-	var center_y = get_viewport_rect().size.y / 2
+	var center_y = get_viewport_rect().size.y / 2 - 100
 	
 	# Anime la descente en 3 secondes avec un effet fluide
 	tween.tween_property(self, "position:y", center_y, 2.0).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)

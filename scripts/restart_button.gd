@@ -3,7 +3,7 @@ extends TextureButton
 func _ready() -> void:
 	visible = false
 	position.x = get_viewport_rect().size.x / 2 - get_rect().size.x/2
-	position.y = get_viewport_rect().size.y / 2 + 50
+	position.y = get_viewport_rect().size.y / 2 - 50
 	pressed.connect(_on_pressed)
 
 func show_button():
