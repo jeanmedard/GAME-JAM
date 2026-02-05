@@ -381,6 +381,7 @@ autoplay = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Timer" type="Label" parent="CanvasLayer"]
+visible = false
 texture_filter = 1
 offset_left = 24.0
 offset_top = 8.0

@@ -57,7 +57,7 @@ func handle_flammes_spawning(delta: float):
 		# Spawn à droite de l'écran, hauteur 424px
 		var spawn_x = get_viewport_rect().size.x  # Largeur de l'écran
 		
-		spawn_obstacle(Vector2(spawn_x, 350+randf_range(-100,100.0)), "flamme")
+		spawn_obstacle(Vector2(spawn_x, 300+randf_range(-100,100.0)), "flamme")
 			
 		# Reset le timer et calcule le prochain temps de spawn (2-4 secondes)
 		spawn_timer_flamme = 0.0

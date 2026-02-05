@@ -1,6 +1,6 @@
 extends Area2D
 @export var speed = 250.0
-@export var amplitude = 50.0  # Amplitude du mouvement vertical
+@export var amplitude = 75.0  # Amplitude du mouvement vertical
 @export var frequency = 2.0   # Vitesse de l'oscillation
 
 var initial_y = 0.0

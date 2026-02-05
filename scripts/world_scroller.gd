@@ -24,10 +24,7 @@ func _ready():
 func fin():
 	is_scrolling = false
 	
-func _process(delta):
-	if not is_scrolling:
-		return
-		
+func gestion_sols(delta):
 	# Déplacer le sol vers la gauche
 	sol1.position.x -= scroll_speed_sol * delta
 	sol2.position.x -= scroll_speed_sol * delta
@@ -40,6 +37,13 @@ func _process(delta):
 	if sol2.position.x <= -sol_width-50.0:
 		sol2.position.x = sol1.position.x + sol_width
 	
+	
+func _process(delta):
+	if not is_scrolling:
+		return
+		
+	gestion_sols(delta)
+
 	# Déplacer le fond
 	if fond:
 		fond.scroll_offset.x -= scroll_speed_fond * delta
