@@ -16,7 +16,7 @@ func _on_body_entered(body):
 		# Accède au timer et réinitialise le temps
 		var timer = get_node("/root/Main/CanvasLayer/Timer")  # Adaptez le chemin
 		if timer:
-			timer.time_remaining = 100.0
+			timer.time_remaining = 10.0
 		
 		# Détruit la flamme après récupération
 		queue_free()
