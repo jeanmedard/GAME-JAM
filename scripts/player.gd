@@ -10,6 +10,13 @@ func _ready():
 	add_to_group("game")
 	animated_sprite.play("run")
 
+# Ajoutez cette fonction _input en plus de votre code existant
+func _input(event):
+	# Détection du tap mobile et clic souris
+	if (event is InputEventScreenTouch or event is InputEventMouseButton) and event.pressed:
+		if is_on_floor():
+			velocity.y = JUMP_VELOCITY
+
 func _physics_process(delta: float) -> void:
 	if is_game_over:
 		return

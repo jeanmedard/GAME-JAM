@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://cci2n3f51cl3w"]
+
+[ext_resource type="Script" uid="uid://c1e27bshn47bu" path="res://scripts/startscreen.gd" id="1_yaem4"]
+[ext_resource type="FontFile" uid="uid://coy53esuxa60q" path="res://assets/fonts/arcadeclassic/ARCADECLASSIC.TTF" id="2_krc6w"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yaem4"]
+font = ExtResource("2_krc6w")
+font_size = 72
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_yaem4")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_krc6w")
+theme_override_font_sizes/font_size = 72
+text = "Tap   to   start
+"
+label_settings = SubResource("LabelSettings_yaem4")
+horizontal_alignment = 1
+vertical_alignment = 1

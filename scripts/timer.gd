@@ -68,6 +68,7 @@ func handle_flammes_spawning(delta: float):
 		next_spawn_time_flamme = randf_range(4.0, 6.0)  # 3s ± 1s
 
 func _ready() -> void:
+	musiqueJeu.play()
 	add_to_group("timer")  # Pour reset_time depuis les flammes
 	update_display()
 	update_jauge()
@@ -89,6 +90,7 @@ func _process(delta: float) -> void:
 	if time_remaining <= 1:
 		time_remaining = 0
 		get_tree().call_group("game", "fin")
+		game_over()
 	
 	update_display()
 
@@ -115,5 +117,6 @@ func game_over():
 	is_game_over = true
 	musiqueJeu.stop()
 	musiqueFin.play()
+	jauge.frame= 5 
 	# Envoie un signal à tous les nœuds du groupe "game"
 	# get_tree().call_group("game", "on_game_over")
