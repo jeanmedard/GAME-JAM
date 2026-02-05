@@ -1,28 +1,45 @@
 extends Node
-
 @export var scroll_speed_fond = 80.0
 @export var scroll_speed_sol = 200.0
 
 var is_scrolling = true  
+var sol_width = 0.0
 
-@onready var sol = $"../Sol"  # Ajustez le chemin selon votre hiérarchie
-@onready var fond = $"../Fond"  # Ajustez le chemin
+@onready var sol1 = $"../Sol 1"
+@onready var sol2 = $"../Sol 2"
+@onready var fond = $"../Fond"
 
 func _ready():
-	add_to_group("game")  # ← NOUVEAU
+	add_to_group("game")
+	
+	# Détecte automatiquement la largeur du TileMapLayer
+	if sol1 is TileMapLayer:
+		var used_rect = sol1.get_used_rect()
+		var tile_size = sol1.tile_set.tile_size
+		sol_width = used_rect.size.x * tile_size.x * sol1.scale.x
+		print("Largeur du sol détectée : ", sol_width)
+	else:
+		print("Erreur : sol1 n'est pas un TileMapLayer")
 
 func fin():
 	is_scrolling = false
 	
-
 func _process(delta):
-	if not is_scrolling:  # ← NOUVEAU 
+	if not is_scrolling:
 		return
 		
 	# Déplacer le sol vers la gauche
-	if sol:
-		sol.position.x -= scroll_speed_sol * delta
+	sol1.position.x -= scroll_speed_sol * delta
+	sol2.position.x -= scroll_speed_sol * delta
 	
-	# Déplacer le fond (si pas de caméra)
+	# Repositionnement infini du sol 1
+	if sol1.position.x <= -sol_width-50.0:
+		sol1.position.x = sol2.position.x + sol_width
+	
+	# Repositionnement infini du sol 2
+	if sol2.position.x <= -sol_width-50.0:
+		sol2.position.x = sol1.position.x + sol_width
+	
+	# Déplacer le fond
 	if fond:
 		fond.scroll_offset.x -= scroll_speed_fond * delta
