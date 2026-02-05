@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://c5au1f3hk1ft6"]
+[gd_scene load_steps=36 format=4 uid="uid://c5au1f3hk1ft6"]
 
 [ext_resource type="Script" uid="uid://umyeoecu484l" path="res://scripts/player.gd" id="1_8mlq6"]
 [ext_resource type="Texture2D" uid="uid://dibqtqooyjdmt" path="res://assets/sprites/ixali_Sprite_Beta.png" id="1_720fp"]
@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://cqe5ursconce8" path="res://assets/sprites/Game_over_text.png" id="11_85kh2"]
 [ext_resource type="Script" uid="uid://dv28r6dkt7nbv" path="res://scripts/game_over_label_new.gd" id="11_pr5cb"]
 [ext_resource type="Texture2D" uid="uid://nepovummqynb" path="res://assets/sprites/restart.png" id="11_vube3"]
-[ext_resource type="PackedScene" uid="uid://b3ai52g1pubh1" path="res://scènes/flamme.tscn" id="13_vube3"]
 [ext_resource type="Texture2D" uid="uid://crspmckbb0tva" path="res://assets/sprites/jauge_10_1.png" id="14_vube3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vube3"]
@@ -403,12 +402,6 @@ texture_hover = ExtResource("11_vube3")
 texture_disabled = ExtResource("11_vube3")
 texture_focused = ExtResource("11_vube3")
 script = ExtResource("11_3pyl7")
-
-[node name="Flamme" parent="CanvasLayer" instance=ExtResource("13_vube3")]
-position = Vector2(1576, 264)
-
-[node name="Flamme2" parent="CanvasLayer" instance=ExtResource("13_vube3")]
-position = Vector2(1888, 264)
 
 [node name="Jauge" type="AnimatedSprite2D" parent="CanvasLayer"]
 position = Vector2(96.5, 157.67975)

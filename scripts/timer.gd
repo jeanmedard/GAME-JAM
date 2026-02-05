@@ -1,16 +1,20 @@
 extends Label
 
 @onready var jauge = get_node("/root/Main/CanvasLayer/Jauge")
-var time_remaining = 10.0  # Commence à 10 secondes
+var time_remaining = 15.0  # Commence à 10 secondes
 var is_game_over = false
 
 # Précharge la scène
 var stalactite_scene = preload("res://scènes/stalactite.tscn")
 var pics_scene = preload("res://scènes/pics.tscn")
+var flamme_scene = preload("res://scènes/flamme.tscn")
 
 # Variables pour le spawn
-var spawn_timer = 0.0
-var next_spawn_time = 3.0  # Premier spawn dans 3 secondes
+var spawn_timer_obstacle = 0.0
+var next_spawn_time_obstacle = 4.0  # Premier spawn dans 3 secondes
+
+var spawn_timer_flamme = 0.0
+var next_spawn_time_flamme = 3.0  # Premier spawn dans 3 secondes
 
 func spawn_obstacle(spawn_position: Vector2, type_obstacle:String):
 	# Instancie la scène
@@ -21,16 +25,18 @@ func spawn_obstacle(spawn_position: Vector2, type_obstacle:String):
 			obstacle = stalactite_scene.instantiate()
 		"pics":
 			obstacle = pics_scene.instantiate()
+		"flamme":
+			obstacle = flamme_scene.instantiate()
 	# Positionne la stalactite
 	obstacle.position = spawn_position
 	# Ajoute à la scène PRINCIPALE (pas au Label!)
 	get_tree().root.get_node("Main").add_child(obstacle)
 
-func handle_stalactite_spawning(delta: float):
+func handle_obstacles_spawning(delta: float):
 	# Gestion du spawn de stalactites
-	spawn_timer += delta
+	spawn_timer_obstacle += delta
 	
-	if spawn_timer >= next_spawn_time:
+	if spawn_timer_obstacle >= next_spawn_time_obstacle:
 		# Spawn à droite de l'écran, hauteur 424px
 		var spawn_x = get_viewport_rect().size.x  # Largeur de l'écran
 		
@@ -40,8 +46,22 @@ func handle_stalactite_spawning(delta: float):
 			spawn_obstacle(Vector2(spawn_x, 496), "pics")
 			
 		# Reset le timer et calcule le prochain temps de spawn (2-4 secondes)
-		spawn_timer = 0.0
-		next_spawn_time = randf_range(2.0, 4.0)  # 3s ± 1s
+		spawn_timer_obstacle = 0.0
+		next_spawn_time_obstacle = randf_range(2.0, 4.0)  # 3s ± 1s
+
+func handle_flammes_spawning(delta: float):
+	# Gestion du spawn de stalactites
+	spawn_timer_flamme += delta
+	
+	if spawn_timer_flamme >= next_spawn_time_flamme:
+		# Spawn à droite de l'écran, hauteur 424px
+		var spawn_x = get_viewport_rect().size.x  # Largeur de l'écran
+		
+		spawn_obstacle(Vector2(spawn_x, 350+randf_range(-100,100.0)), "flamme")
+			
+		# Reset le timer et calcule le prochain temps de spawn (2-4 secondes)
+		spawn_timer_flamme = 0.0
+		next_spawn_time_flamme = randf_range(4.0, 6.0)  # 3s ± 1s
 
 func _ready() -> void:
 	add_to_group("timer")  # Pour reset_time depuis les flammes
@@ -58,7 +78,8 @@ func _process(delta: float) -> void:
 	update_jauge()
 	
 	# Appelle la fonction de spawn
-	handle_stalactite_spawning(delta)
+	handle_obstacles_spawning(delta)
+	handle_flammes_spawning(delta)
 	
 	# Vérifie si le temps est écoulé
 	if time_remaining <= 1:
@@ -70,10 +91,10 @@ func _process(delta: float) -> void:
 func update_jauge():
 	# Calcule automatiquement la frame en fonction du temps
 	# 10s = frame 0, 8s = frame 1, 6s = frame 2, etc.
-	var frame_index = 4 - int(time_remaining / 2.0)
+	var frame_index = 4 - int(time_remaining / 3.0)
 	
 	# S'assure que l'index est dans les limites (0-4)
-	frame_index = clamp(frame_index, 0, 4)
+	frame_index = clamp(frame_index, 0, 5)
 	
 	jauge.frame = frame_index
 
