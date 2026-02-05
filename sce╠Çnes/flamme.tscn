@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://b3ai52g1pubh1"]
+
+[ext_resource type="Texture2D" uid="uid://1drsw831r4nh" path="res://assets/sprites/Fire_Preset.png" id="1_3mri7"]
+[ext_resource type="Script" uid="uid://bk7stuqbnmvj1" path="res://scripts/flamme.gd" id="1_nf8l0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nf8l0"]
+atlas = ExtResource("1_3mri7")
+region = Rect2(0, 0, 400, 394)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34fwk"]
+atlas = ExtResource("1_3mri7")
+region = Rect2(400, 0, 400, 394)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvjuh"]
+atlas = ExtResource("1_3mri7")
+region = Rect2(0, 394, 400, 394)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kv3sr"]
+atlas = ExtResource("1_3mri7")
+region = Rect2(400, 394, 400, 394)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0iin7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nf8l0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34fwk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvjuh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kv3sr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3mri7"]
+radius = 143.10835
+
+[node name="Flamme" type="Area2D"]
+scale = Vector2(0.25, 0.25)
+script = ExtResource("1_nf8l0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0iin7")
+autoplay = "default"
+frame = 1
+frame_progress = 0.025364192
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 40)
+shape = SubResource("CircleShape2D_3mri7")
