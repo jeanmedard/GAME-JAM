@@ -3,9 +3,6 @@ extends Sprite2D
 @onready var restart_button = get_node("/root/Main/CanvasLayer/RestartButton")  # Référence au bouton enfant
 @onready var jauge = get_node("/root/Main/CanvasLayer/Jauge")
 
-# Référence à l'event FMOD
-var music_event
-
 func _ready() -> void:
 	# Centre automatiquement au milieu du viewport
 	# Position de départ (hors écran, en haut)
@@ -13,10 +10,6 @@ func _ready() -> void:
 	position.y = -texture.get_height() / 2  # Hors de l'écran en haut
 	
 	add_to_group("game")
-	
-	
-	# Trouve l'event FMOD
-	music_event = get_tree().root.find_child("FmodEventEmitter2D", true, false)
 	
 func animation():
 	# Crée l'animation
@@ -34,9 +27,3 @@ func fin():
 	visible = true
 	animation()
 	animated_sprite.play("frozen")
-	
-	
-	 # 🎵 Passe l'intensité à 0
-	if music_event:
-		
-		music_event.set_parameter("Intensity", 0.0)

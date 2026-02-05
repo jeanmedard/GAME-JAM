@@ -4,37 +4,20 @@ extends Label
 var time_remaining = 10.0  # Commence à 10 secondes
 var is_game_over = false
 
-# FMOD
-var music_event
-var fmod_parameter_changed = false
-# FMOD
-
-
 # Précharge la scène
 var stalactite_scene = preload("res://scènes/stalactite.tscn")
-var pics_scene = preload("res://scènes/pics.tscn")
-
 
 # Variables pour le spawn
 var spawn_timer = 0.0
-var next_spawn_time = 3.0  # Premier spawn qdans 3 secondes
+var next_spawn_time = 3.0  # Premier spawn dans 3 secondes
 
-func spawn_obstacle(spawn_position: Vector2, type_obstacle: String):
+func spawn_stalactite(spawn_position: Vector2):
 	# Instancie la scène
-	var obstacle
-	match type_obstacle:
-		"stalactite":
-			obstacle = stalactite_scene.instantiate()
-			# Positionne la stalactite
-		"pics":
-			obstacle = pics_scene.instantiate()
-			
-	obstacle.position = spawn_position
-			# Ajoute à la scène PRINCIPALE (pas au Label!)
-
-	get_tree().root.get_node("Main").add_child(obstacle)
-		
-	
+	var stalactite = stalactite_scene.instantiate()
+	# Positionne la stalactite
+	stalactite.position = spawn_position
+	# Ajoute à la scène PRINCIPALE (pas au Label!)
+	get_tree().root.get_node("Main").add_child(stalactite)
 
 func handle_stalactite_spawning(delta: float):
 	# Gestion du spawn de stalactites
@@ -43,7 +26,7 @@ func handle_stalactite_spawning(delta: float):
 	if spawn_timer >= next_spawn_time:
 		# Spawn à droite de l'écran, hauteur 424px
 		var spawn_x = get_viewport_rect().size.x  # Largeur de l'écran
-		spawn_obstacle(Vector2(spawn_x, 424), "pics")
+		spawn_stalactite(Vector2(spawn_x, 424))
 		
 		# Reset le timer et calcule le prochain temps de spawn (2-4 secondes)
 		spawn_timer = 0.0
@@ -53,11 +36,6 @@ func _ready() -> void:
 	add_to_group("timer")  # Pour reset_time depuis les flammes
 	update_display()
 	update_jauge()
-	
-	
-	# Trouve l'event FMOD automatiquement
-	music_event = get_tree().root.find_child("FmodEventEmitter2D", true, false)
-	
 
 func _process(delta: float) -> void:
 	if is_game_over:
@@ -87,23 +65,6 @@ func update_jauge():
 	frame_index = clamp(frame_index, 0, 4)
 	
 	jauge.frame = frame_index
-	
-	
-	
-# Gestion dynamique du paramètre FMOD
-	if music_event:
-		if time_remaining <= 8.0:
-			# Sous 8s = intensité 2
-			if not fmod_parameter_changed:
-				
-				music_event.set_parameter("Intensity", 2.0)
-				fmod_parameter_changed = true
-		else:
-			# Au-dessus de 8s = intensité 1
-			if fmod_parameter_changed:
-				
-				music_event.set_parameter("Intensity", 1.0)
-				fmod_parameter_changed = false
 
 func update_display():
 	# Affiche le temps restant (arrondi)
@@ -119,7 +80,6 @@ func update_display():
 
 func reset_time():
 	time_remaining = 10.0
-	fmod_parameter_changed = false  # RESET aussi le flag FMOD !
 	update_display()
 	update_jauge()
 

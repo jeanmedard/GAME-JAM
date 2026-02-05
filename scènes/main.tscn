@@ -364,6 +364,7 @@ script = ExtResource("5_0fmxh")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_wu43s")
+autoplay = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -406,16 +407,3 @@ position = Vector2(1888, 264)
 position = Vector2(96.5, 157.67975)
 scale = Vector2(0.36928105, 0.36928102)
 sprite_frames = SubResource("SpriteFrames_r1i4m")
-
-[node name="Audio" type="Node2D" parent="."]
-
-[node name="FmodBankLoader" type="FmodBankLoader" parent="Audio"]
-bank_paths = ["res://Desktop/Master.strings.bank", "res://Desktop/Master.bank"]
-
-[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="Audio"]
-event_name = "event:/music"
-event_guid = "{78472b4e-8723-48fc-9547-ca5b1e7e4480}"
-autoplay = true
-fmod_parameters/intensity/id = 9181224389260941799
-fmod_parameters/intensity = 1.0
-fmod_parameters/intensity/variant_type = 3
