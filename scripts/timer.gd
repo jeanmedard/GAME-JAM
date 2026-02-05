@@ -12,18 +12,29 @@ var fmod_parameter_changed = false
 
 # Précharge la scène
 var stalactite_scene = preload("res://scènes/stalactite.tscn")
+var pics_scene = preload("res://scènes/pics.tscn")
+
 
 # Variables pour le spawn
 var spawn_timer = 0.0
 var next_spawn_time = 3.0  # Premier spawn qdans 3 secondes
 
-func spawn_stalactite(spawn_position: Vector2):
+func spawn_obstacle(spawn_position: Vector2, type_obstacle: String):
 	# Instancie la scène
-	var stalactite = stalactite_scene.instantiate()
-	# Positionne la stalactite
-	stalactite.position = spawn_position
-	# Ajoute à la scène PRINCIPALE (pas au Label!)
-	get_tree().root.get_node("Main").add_child(stalactite)
+	var obstacle
+	match type_obstacle:
+		"stalactite":
+			obstacle = stalactite_scene.instantiate()
+			# Positionne la stalactite
+		"pics":
+			obstacle = pics_scene.instantiate()
+			
+	obstacle.position = spawn_position
+			# Ajoute à la scène PRINCIPALE (pas au Label!)
+
+	get_tree().root.get_node("Main").add_child(obstacle)
+		
+	
 
 func handle_stalactite_spawning(delta: float):
 	# Gestion du spawn de stalactites
@@ -32,7 +43,7 @@ func handle_stalactite_spawning(delta: float):
 	if spawn_timer >= next_spawn_time:
 		# Spawn à droite de l'écran, hauteur 424px
 		var spawn_x = get_viewport_rect().size.x  # Largeur de l'écran
-		spawn_stalactite(Vector2(spawn_x, 424))
+		spawn_obstacle(Vector2(spawn_x, 424), "pics")
 		
 		# Reset le timer et calcule le prochain temps de spawn (2-4 secondes)
 		spawn_timer = 0.0

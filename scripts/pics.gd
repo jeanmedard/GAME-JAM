@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var speed = 500.0  # Vitesse en pixels/seconde (ajustable dans l'inspecteur)
+@export var speed = 200.0  # Vitesse en pixels/seconde (ajustable dans l'inspecteur)
 
 func _ready():
 	# Connecte le signal de collision
