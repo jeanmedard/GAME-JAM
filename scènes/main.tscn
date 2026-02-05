@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://c5au1f3hk1ft6"]
+[gd_scene load_steps=37 format=4 uid="uid://c5au1f3hk1ft6"]
 
 [ext_resource type="Script" uid="uid://umyeoecu484l" path="res://scripts/player.gd" id="1_8mlq6"]
 [ext_resource type="Texture2D" uid="uid://dibqtqooyjdmt" path="res://assets/sprites/ixali_Sprite_Beta.png" id="1_720fp"]
@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://dv28r6dkt7nbv" path="res://scripts/game_over_label_new.gd" id="11_pr5cb"]
 [ext_resource type="Texture2D" uid="uid://nepovummqynb" path="res://assets/sprites/restart.png" id="11_vube3"]
 [ext_resource type="PackedScene" uid="uid://b3ai52g1pubh1" path="res://scènes/flamme.tscn" id="13_vube3"]
-[ext_resource type="Texture2D" uid="uid://bwbobwvppu105" path="res://assets/sprites/jauge GJ.png" id="14_anyk2"]
+[ext_resource type="Texture2D" uid="uid://crspmckbb0tva" path="res://assets/sprites/jauge_10_1.png" id="14_vube3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vube3"]
 atlas = ExtResource("1_720fp")
@@ -280,24 +280,28 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ryvcx")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0xmg1"]
-atlas = ExtResource("14_anyk2")
-region = Rect2(0, 0, 306, 500)
+atlas = ExtResource("14_vube3")
+region = Rect2(0, 0, 300, 500)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lfyv0"]
-atlas = ExtResource("14_anyk2")
-region = Rect2(306, 0, 306, 500)
+atlas = ExtResource("14_vube3")
+region = Rect2(300, 0, 300, 500)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ngt48"]
-atlas = ExtResource("14_anyk2")
-region = Rect2(612, 0, 306, 500)
+atlas = ExtResource("14_vube3")
+region = Rect2(600, 0, 300, 500)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p0gj6"]
-atlas = ExtResource("14_anyk2")
-region = Rect2(0, 500, 306, 500)
+atlas = ExtResource("14_vube3")
+region = Rect2(0, 500, 300, 500)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yj7ib"]
-atlas = ExtResource("14_anyk2")
-region = Rect2(306, 500, 306, 500)
+atlas = ExtResource("14_vube3")
+region = Rect2(300, 500, 300, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1i4m"]
+atlas = ExtResource("14_vube3")
+region = Rect2(600, 500, 300, 500)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r1i4m"]
 animations = [{
@@ -316,14 +320,17 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yj7ib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1i4m")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }]
 
 [node name="Main" type="Node2D"]
-metadata/_edit_horizontal_guides_ = [424.0]
+metadata/_edit_horizontal_guides_ = [424.0, 250.0]
 
 [node name="Player" type="CharacterBody2D" parent="."]
 script = ExtResource("1_8mlq6")
@@ -405,5 +412,7 @@ position = Vector2(1888, 264)
 
 [node name="Jauge" type="AnimatedSprite2D" parent="CanvasLayer"]
 position = Vector2(96.5, 157.67975)
-scale = Vector2(0.36928105, 0.36928102)
+scale = Vector2(0.45, 0.45)
 sprite_frames = SubResource("SpriteFrames_r1i4m")
+frame = 5
+frame_progress = 1.0
