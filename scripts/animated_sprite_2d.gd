@@ -16,3 +16,4 @@ func _on_animation_changed():
 		$Course.play()
 	elif animation == "jump":
 		$Saut.play()
+		$Course.stop()
