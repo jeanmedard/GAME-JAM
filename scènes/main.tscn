@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://c5au1f3hk1ft6"]
+[gd_scene load_steps=40 format=4 uid="uid://c5au1f3hk1ft6"]
 
 [ext_resource type="Script" uid="uid://umyeoecu484l" path="res://scripts/player.gd" id="1_8mlq6"]
 [ext_resource type="Texture2D" uid="uid://dibqtqooyjdmt" path="res://assets/sprites/ixali_Sprite_Beta.png" id="1_720fp"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://cp2hsl5ida57a" path="res://assets/sounds/Jumps.wav" id="6_sk4cq"]
 [ext_resource type="AudioStream" uid="uid://ck508t5dri6hm" path="res://assets/sounds/intro .wav" id="7_wu43s"]
 [ext_resource type="Script" uid="uid://dni0f46aen5u2" path="res://scripts/timer.gd" id="8_gxvv0"]
+[ext_resource type="AudioStream" uid="uid://dkclmcrlsumcy" path="res://assets/sounds/arcade-runner.mp3" id="10_sk4cq"]
 [ext_resource type="Script" uid="uid://uwyo4l2j3ptl" path="res://scripts/restart_button.gd" id="11_3pyl7"]
 [ext_resource type="Texture2D" uid="uid://cqe5ursconce8" path="res://assets/sprites/Game_over_text.png" id="11_85kh2"]
 [ext_resource type="Script" uid="uid://dv28r6dkt7nbv" path="res://scripts/game_over_label_new.gd" id="11_pr5cb"]
@@ -385,10 +386,13 @@ texture = ExtResource("4_ryvcx")
 [node name="WorldScroller" type="Node" parent="."]
 script = ExtResource("5_0fmxh")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_wu43s")
-volume_db = -11.617
+[node name="MusiqueJeu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_sk4cq")
+volume_db = -25.447
 autoplay = true
+
+[node name="MusiqueFin" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_wu43s")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

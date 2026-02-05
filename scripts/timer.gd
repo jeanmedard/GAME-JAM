@@ -1,6 +1,10 @@
 extends Label
 
 @onready var jauge = get_node("/root/Main/CanvasLayer/Jauge")
+@onready var musiqueJeu = get_node("/root/Main/MusiqueJeu")
+@onready var musiqueFin = get_node("/root/Main/MusiqueFin")
+
+
 var time_remaining = 15.0  # Commence à 10 secondes
 var is_game_over = false
 
@@ -109,5 +113,7 @@ func reset_time():
 
 func game_over():
 	is_game_over = true
+	musiqueJeu.stop()
+	musiqueFin.play()
 	# Envoie un signal à tous les nœuds du groupe "game"
 	# get_tree().call_group("game", "on_game_over")
