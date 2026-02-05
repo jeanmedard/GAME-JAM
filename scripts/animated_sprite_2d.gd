@@ -7,6 +7,7 @@ func _ready():
 	# Attend un court instant avant d'activer les sons
 	await get_tree().create_timer(0.1).timeout
 	game_started = true
+	add_to_group("game")
 
 func _on_animation_changed():
 	if not game_started:
@@ -17,3 +18,6 @@ func _on_animation_changed():
 	elif animation == "jump":
 		$Saut.play()
 		$Course.stop()
+		
+func fin():
+	$Course.stop()
