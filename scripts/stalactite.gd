@@ -1,5 +1,7 @@
 extends Area2D
 
+@onready var timer = get_node("/root/Main/CanvasLayer/Timer")
+
 @export var speed = 300.0  # Vitesse en pixels/seconde (ajustable dans l'inspecteur)
 
 func _ready():
@@ -20,3 +22,4 @@ func _on_body_entered(body):
 		
 		
 		get_tree().call_group("game", "fin")
+		timer.game_over()
