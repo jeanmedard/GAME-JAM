@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://c5au1f3hk1ft6"]
+[gd_scene load_steps=39 format=4 uid="uid://c5au1f3hk1ft6"]
 
 [ext_resource type="Script" uid="uid://umyeoecu484l" path="res://scripts/player.gd" id="1_8mlq6"]
 [ext_resource type="Texture2D" uid="uid://dibqtqooyjdmt" path="res://assets/sprites/ixali_Sprite_Beta.png" id="1_720fp"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://vkldqf3y0vwy" path="res://assets/sprites/Bg_beta.png" id="4_ryvcx"]
 [ext_resource type="AudioStream" uid="uid://o6llq4ps5ylk" path="res://assets/sounds/court dans neigne à randomizer.wav" id="4_vube3"]
 [ext_resource type="Script" uid="uid://4fat7mlm50t3" path="res://scripts/world_scroller.gd" id="5_0fmxh"]
+[ext_resource type="AudioStream" uid="uid://cp2hsl5ida57a" path="res://assets/sounds/Jumps.wav" id="6_sk4cq"]
 [ext_resource type="AudioStream" uid="uid://ck508t5dri6hm" path="res://assets/sounds/intro .wav" id="7_wu43s"]
 [ext_resource type="Script" uid="uid://dni0f46aen5u2" path="res://scripts/timer.gd" id="8_gxvv0"]
 [ext_resource type="Script" uid="uid://uwyo4l2j3ptl" path="res://scripts/restart_button.gd" id="11_3pyl7"]
@@ -334,6 +335,7 @@ animations = [{
 metadata/_edit_horizontal_guides_ = [424.0, 250.0]
 
 [node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(-208, 80)
 script = ExtResource("1_8mlq6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
@@ -347,6 +349,9 @@ script = ExtResource("4_anyk2")
 position = Vector2(-1963.3333, -1063.3333)
 scale = Vector2(3.3333333, 3.3333333)
 stream = ExtResource("4_vube3")
+
+[node name="Saut" type="AudioStreamPlayer2D" parent="Player/AnimatedSprite2D"]
+stream = ExtResource("6_sk4cq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(608, 320)
@@ -382,6 +387,7 @@ script = ExtResource("5_0fmxh")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_wu43s")
+volume_db = -11.617
 autoplay = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
