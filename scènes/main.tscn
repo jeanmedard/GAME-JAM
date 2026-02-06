@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://c5au1f3hk1ft6"]
+[gd_scene load_steps=42 format=4 uid="uid://c5au1f3hk1ft6"]
 
 [ext_resource type="Script" uid="uid://umyeoecu484l" path="res://scripts/player.gd" id="1_8mlq6"]
 [ext_resource type="Texture2D" uid="uid://dibqtqooyjdmt" path="res://assets/sprites/ixali_Sprite_Beta.png" id="1_720fp"]
@@ -17,6 +17,8 @@
 [ext_resource type="Script" uid="uid://dv28r6dkt7nbv" path="res://scripts/game_over_label_new.gd" id="11_pr5cb"]
 [ext_resource type="Texture2D" uid="uid://nepovummqynb" path="res://assets/sprites/restart.png" id="11_vube3"]
 [ext_resource type="Texture2D" uid="uid://crspmckbb0tva" path="res://assets/sprites/jauge_10_1.png" id="14_vube3"]
+[ext_resource type="Script" uid="uid://di8r8jy0bpp5d" path="res://scripts/score.gd" id="18_0xmg1"]
+[ext_resource type="FontFile" uid="uid://coy53esuxa60q" path="res://assets/fonts/arcadeclassic/ARCADECLASSIC.TTF" id="18_lfyv0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vube3"]
 atlas = ExtResource("1_720fp")
@@ -438,3 +440,14 @@ scale = Vector2(0.45, 0.45)
 sprite_frames = SubResource("SpriteFrames_r1i4m")
 frame = 5
 frame_progress = 1.0
+
+[node name="Score" type="Label" parent="CanvasLayer"]
+offset_left = 527.0
+offset_top = 85.0
+offset_right = 555.0
+offset_bottom = 148.0
+theme_override_colors/font_color = Color(0.011764706, 0.13333334, 0.29803923, 1)
+theme_override_fonts/font = ExtResource("18_lfyv0")
+theme_override_font_sizes/font_size = 45
+text = "0"
+script = ExtResource("18_0xmg1")
